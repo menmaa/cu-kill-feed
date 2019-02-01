@@ -1,0 +1,12 @@
+{
+	"disableAutoUpdate": false,
+	"name": "cu-kill-feed",
+	"author": "Menma",
+	"description": "Restores the pre-patch 75 guild kill/death feed in Civil Unrest: Velika map.",
+	"options": {
+		"guiName": "Civil Unrest Kill Feed"
+	},
+	"servers": ["https://raw.githubusercontent.com/menmaa/cu-kill-feed/master/"],
+	"supportUrl": "https://github.com/menmaa/cu-kill-feed/issues",
+	"donationUrl": "https://www.paypal.me/menmaaa"
+}
