@@ -23,7 +23,7 @@ module.exports = function CUKillFeed(mod) {
 			unload();
 		});
 		
-		hook('S_USER_PAPERDOLL_INFO', 5, (event) => {
+		hook('S_USER_PAPERDOLL_INFO', 8, (event) => {
 			if(!guildMap.has(event.name)) {
 				guildMap.set(event.name, event.guild);
 			}
@@ -35,7 +35,7 @@ module.exports = function CUKillFeed(mod) {
 			}
 		});
 		
-		hook('S_SPAWN_USER', 13, (event) => {
+		hook('S_SPAWN_USER', 14, (event) => {
 			if(!guildMap.has(event.name)) {
 				guildMap.set(event.name, event.guild);
 			}
@@ -60,7 +60,7 @@ module.exports = function CUKillFeed(mod) {
 		switch(e.type) {
 			case 0: {
 				if(!guildMap.has(e.name)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 5, (event) => {
+					mod.hookOnce('S_USER_PAPERDOLL_INFO', 8, (event) => {
 						guildMap.set(event.name, event.guild);
 						sendSystemMessage(e);
 						return false;
@@ -78,7 +78,7 @@ module.exports = function CUKillFeed(mod) {
 			}
 			case 1: {
 				if(!guildMap.has(e.killerName)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 5, (event) => {
+					mod.hookOnce('S_USER_PAPERDOLL_INFO', 8, (event) => {
 						guildMap.set(event.name, event.guild);
 						sendSystemMessage(e);
 						return false;
