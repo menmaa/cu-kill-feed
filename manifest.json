@@ -1,14 +1,15 @@
 {
 	"files": {
-		"index.js": "5a9d0a683fc285cbcd2da878f7e71933fb8c34373c634975db1e607bfaf295b3",
+		"index.js": "cfeacc95793bb6eaea6480b3b6771777adf50fd73365cd6ce6f705229e59f075",
 		"module.json": "b9ac609a062ac11107f3fc72784c00f7d9fb4c0b38b1556d4a46c6fe7fa1beff"
 	},
 	"defs": {
 		"S_LOAD_TOPO": 3,
 		"S_RETURN_TO_LOBBY": 1,
-		"S_USER_PAPERDOLL_INFO": 8,
-		"S_SPAWN_USER": 14,
-		"C_REQUEST_USER_PAPERDOLL_INFO": 1,
-		"S_SYSTEM_MESSAGE": 1
+		"S_USER_PAPERDOLL_INFO": 10,
+		"S_SPAWN_USER": 15,
+		"C_REQUEST_USER_PAPERDOLL_INFO": 2,
+		"S_SYSTEM_MESSAGE": 1,
+		"S_USER_DEATH": 1
 	}
 }

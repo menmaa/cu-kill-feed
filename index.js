@@ -1,12 +1,5 @@
 module.exports = function CUKillFeed(mod) {
 	
-	if(mod.proxyAuthor == "caali") {
-		mod.dispatch.protocol.messages.set('S_USER_DEATH', new Map().set(1, [['name', 'offset'], ['killerName', 'offset'], ['type', 'byte'], ['name', 'string'], ['killerName', 'string']]));
-	} else {
-		const { protocol } = require('tera-data-parser');
-		protocol.messages.set('S_USER_DEATH', new Map().set(1, [['name', 'offset'], ['killerName', 'offset'], ['type', 'byte'], ['name', 'string'], ['killerName', 'string']]));
-	}
-	
 	let loaded = false;
 	let hooks = [];
 	let guildMap = new Map();
@@ -23,21 +16,15 @@ module.exports = function CUKillFeed(mod) {
 			unload();
 		});
 		
-		hook('S_USER_PAPERDOLL_INFO', 8, (event) => {
-			if(!guildMap.has(event.name)) {
-				guildMap.set(event.name, event.guild);
-			}
-		});
-		
 		hook('S_USER_DEATH', 1, (event) => {
 			if(event.killerName.length > 0) {
 				sendSystemMessage(event);
 			}
 		});
 		
-		hook('S_SPAWN_USER', 14, (event) => {
+		hook('S_SPAWN_USER', 15, (event) => {
 			if(!guildMap.has(event.name)) {
-				guildMap.set(event.name, event.guild);
+				guildMap.set(event.name, event.guildName);
 			}
 		});
 		
@@ -60,12 +47,12 @@ module.exports = function CUKillFeed(mod) {
 		switch(e.type) {
 			case 0: {
 				if(!guildMap.has(e.name)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 8, (event) => {
+					mod.hookOnce('S_USER_PAPERDOLL_INFO', 10, (event) => {
 						guildMap.set(event.name, event.guild);
 						sendSystemMessage(e);
 						return false;
 					});
-					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 1, { name: e.name });
+					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 2, { name: e.name });
 				} else {
 					let message = mod.buildSystemMessage('SMT_CITYWAR_GUILD_KILL', {
 						Name1: e.killerName,
@@ -78,12 +65,12 @@ module.exports = function CUKillFeed(mod) {
 			}
 			case 1: {
 				if(!guildMap.has(e.killerName)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 8, (event) => {
+					mod.hookOnce('S_USER_PAPERDOLL_INFO', 10, (event) => {
 						guildMap.set(event.name, event.guild);
 						sendSystemMessage(e);
 						return false;
 					});
-					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 1, { name: e.killerName });
+					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 2, { name: e.killerName });
 				} else {
 					let message = mod.buildSystemMessage('SMT_CITYWAR_GUILD_DEATH', {
 						Name1: e.name,
