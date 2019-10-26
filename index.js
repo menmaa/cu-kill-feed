@@ -47,12 +47,12 @@ module.exports = function CUKillFeed(mod) {
 		switch(e.type) {
 			case 0: {
 				if(!guildMap.has(e.name)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 10, (event) => {
+					mod.hookOnce('S_USER_PAPERDOLL_INFO', 11, (event) => {
 						guildMap.set(event.name, event.guild);
 						sendSystemMessage(e);
 						return false;
 					});
-					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 2, { name: e.name });
+					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 3, { name: e.name });
 				} else {
 					let message = mod.buildSystemMessage('SMT_CITYWAR_GUILD_KILL', {
 						Name1: e.killerName,
@@ -65,12 +65,12 @@ module.exports = function CUKillFeed(mod) {
 			}
 			case 1: {
 				if(!guildMap.has(e.killerName)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 10, (event) => {
+					mod.hookOnce('S_USER_PAPERDOLL_INFO', 11, (event) => {
 						guildMap.set(event.name, event.guild);
 						sendSystemMessage(e);
 						return false;
 					});
-					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 2, { name: e.killerName });
+					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 3, { name: e.killerName });
 				} else {
 					let message = mod.buildSystemMessage('SMT_CITYWAR_GUILD_DEATH', {
 						Name1: e.name,
