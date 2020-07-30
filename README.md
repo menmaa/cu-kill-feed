@@ -7,7 +7,7 @@ If you like to offer me a few drinks -> [PayPal](https://www.paypal.me/menmaaa)
 ### Installation Instructions
 
 1. Download and extract into the `mods` folder of your TERA Toolbox.
-2. Copy `S_USER_DEATH.1.def` file into `[toolbox folder]\node_modules\tera-data\protocol`
+2. Copy `S_USER_DEATH.1.def` file into `[toolbox folder]\data\definitions`
 
 ### Preview
 
