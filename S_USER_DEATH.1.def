@@ -1,3 +1,0 @@
-byte	type # 0 = kill, 1 = death
-string	name
-string	killerName

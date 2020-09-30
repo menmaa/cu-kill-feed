@@ -17,7 +17,7 @@ module.exports = function CUKillFeed(mod) {
 		});
 		
 		hook('S_USER_DEATH', 1, (event) => {
-			if(event.killerName.length > 0) {
+			if(event.killer.length > 0) {
 				sendSystemMessage(event);
 			}
 		});
@@ -44,44 +44,27 @@ module.exports = function CUKillFeed(mod) {
 	}
 	
 	function sendSystemMessage(e) {
-		switch(e.type) {
-			case 0: {
-				if(!guildMap.has(e.name)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 11, (event) => {
-						guildMap.set(event.name, event.guild);
-						sendSystemMessage(e);
-						return false;
-					});
-					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 3, { name: e.name });
-				} else {
-					let message = mod.buildSystemMessage('SMT_CITYWAR_GUILD_KILL', {
-						Name1: e.killerName,
-						GuildName2: guildMap.get(e.name),
-						Name2: e.name
-					});
-					mod.send('S_SYSTEM_MESSAGE', 1, { message });
-				}
-				break;
-			}
-			case 1: {
-				if(!guildMap.has(e.killerName)) {
-					mod.hookOnce('S_USER_PAPERDOLL_INFO', 11, (event) => {
-						guildMap.set(event.name, event.guild);
-						sendSystemMessage(e);
-						return false;
-					});
-					mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 3, { name: e.killerName });
-				} else {
-					let message = mod.buildSystemMessage('SMT_CITYWAR_GUILD_DEATH', {
-						Name1: e.name,
-						GuildName2: guildMap.get(e.killerName),
-						Name2: e.killerName
-					});
-					mod.send('S_SYSTEM_MESSAGE', 1, { message });
-				}
-				break;
-			}
+		
+		let Name1 = (e.killed ? e.name : e.killer);
+		let Name2 = (e.killed ? e.killer : e.name);
+		let smt = `SMT_CITYWAR_GUILD_${e.killed ? 'DEATH' : 'KILL'}`;
+		
+		if(!guildMap.has(Name2)) {
+			mod.hookOnce('S_USER_PAPERDOLL_INFO', 11, (event) => {
+				guildMap.set(event.name, event.guild);
+				sendSystemMessage(e);
+				return false;
+			});
+			mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 3, { name: Name2 });
+			return;
 		}
+		
+		let message = mod.buildSystemMessage(smt, {
+			Name1,
+			GuildName2: guildMap.get(Name2),
+			Name2
+		});
+		mod.send('S_SYSTEM_MESSAGE', 1, { message });
 	}
 	
 	function hook() {
