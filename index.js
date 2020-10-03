@@ -17,6 +17,16 @@ module.exports = function CUKillFeed(mod) {
 		});
 		
 		hook('S_USER_DEATH', 1, (event) => {
+			// Old Definition Compatibility
+			if(event.type && event.killerName.length > 0) {
+				sendSystemMessage({
+					killed: (event.type == 1),
+					name: event.name,
+					killer: event.killerName
+				});
+				return;
+			}
+			
 			if(event.killer.length > 0) {
 				sendSystemMessage(event);
 			}
