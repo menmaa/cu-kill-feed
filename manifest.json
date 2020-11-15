@@ -1,13 +1,13 @@
 {
 	"files": {
-		"index.js": "1088f73b7dbfecc6b73e8cc63121b98c10c6be14feef7a0f09f1760c21b6259b",
+		"index.js": "90342934fe9d2a7baaacddeb11b1f65dc55705612b6a36290e933d46d95ea063",
 		"module.json": "b9ac609a062ac11107f3fc72784c00f7d9fb4c0b38b1556d4a46c6fe7fa1beff"
 	},
 	"defs": {
 		"S_LOAD_TOPO": 3,
 		"S_RETURN_TO_LOBBY": 1,
 		"S_USER_PAPERDOLL_INFO": 11,
-		"S_SPAWN_USER": 15,
+		"S_SPAWN_USER": 16,
 		"C_REQUEST_USER_PAPERDOLL_INFO": 3,
 		"S_SYSTEM_MESSAGE": 1,
 		"S_USER_DEATH": 1

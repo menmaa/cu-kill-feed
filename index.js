@@ -32,7 +32,7 @@ module.exports = function CUKillFeed(mod) {
 			}
 		});
 		
-		hook('S_SPAWN_USER', 15, (event) => {
+		hook('S_SPAWN_USER', 16, (event) => {
 			if(!guildMap.has(event.name)) {
 				guildMap.set(event.name, event.guildName);
 			}
