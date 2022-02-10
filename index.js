@@ -60,12 +60,12 @@ module.exports = function CUKillFeed(mod) {
 		let smt = `SMT_CITYWAR_GUILD_${e.killed ? 'DEATH' : 'KILL'}`;
 		
 		if(!guildMap.has(Name2)) {
-			mod.hookOnce('S_USER_PAPERDOLL_INFO', 11, (event) => {
+			mod.hookOnce('S_USER_PAPERDOLL_INFO', 15, (event) => {
 				guildMap.set(event.name, event.guild);
 				sendSystemMessage(e);
 				return false;
 			});
-			mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 3, { name: Name2 });
+			mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 4, { name: Name2 });
 			return;
 		}
 		
